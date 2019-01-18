@@ -1,0 +1,36 @@
+@import controllers.Auth.Secured
+@(books : List[Book],title:String)
+
+@layout(title){
+
+    <h2>@title</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Cover</th>
+                <th>Price</th>
+                <th>Tags</th>
+                <th>User</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        @for(book <- books){
+            <tr>
+                <td><a class="btn btn-link" href="@routes.BooksController.show(book.id)">@book.title</a></td>
+                <td><img width="100px" class="img img-responsive" src="/assets/uploads/@book.cover"></td>
+                <td>@book.price</td>
+                <td>@for(tag <- book.tags){
+                    @tag.name
+                }</td>
+                <td>@book.author.name</td>
+                @if(Secured.CHECK()){
+                    <td><a class="btn btn-primary btn-sm" href="@routes.BooksController.edit(book.id)">Edit</a></td>
+                }
+            </tr>
+        }
+
+        </tbody>
+    </table>
+}

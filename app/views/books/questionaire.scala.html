@@ -1,0 +1,282 @@
+@import controllers.Auth.Secured
+
+
+<html>
+
+<head>
+
+    <title>Pre-Test Likert</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <script type="text/javascript">
+
+			function SaveLikert(form){
+
+				var Familiar = form.elements.familiar, a = Familiar.length;
+				var Affraid = form.elements.fear, b = Affraid.length;
+				var Use = form.elements.useful, c = Use.length;
+				var Anxious = form.elements.anxious, d = Anxious.length;
+
+				var Familiarity, Fear, Useful, Anxiety;
+
+				while (--a > -1){
+					if(Familiar[a].checked){
+						Familiarity = Familiar[a].value;
+						console.log("Familiarity: "+Familiarity);
+					}
+				}
+
+				while(--b > -1){
+					if(Affraid[b].checked){
+						Fear = Affraid[b].value;
+						console.log("Fear: " +Fear);
+					}
+				}
+
+				while(--c > -1){
+					if(Use[c].checked){
+						Useful = Use[c].value;
+						console.log("Usefulness: " +Useful);
+					}
+				}
+
+				while(--d > -1){
+					if(Anxious[d].checked){
+						Anxiety = Anxious[d].value;
+						console.log("Anxiety: " +Anxiety);
+					}
+				}
+
+				var JsonString = "[Likert Results Go Here]";
+				var r = jsRoutes.controllers.HomeController.saveLikert();
+                $.ajax({url: r.url, type: r.type, contentType: "application/json", data: JsonString });
+			}
+
+		</script>
+
+    <style>
+
+		html,body {padding:0;margin:0;}
+.wrap {
+  font:12px Arial, san-serif;
+}
+h1.likert-header {
+  padding-left:4.25%;
+  margin:20px 0 0;
+}
+form .statement {
+  display:block;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 30px 0 0 4.25%;
+  margin-bottom:10px;
+}
+form .likert {
+  list-style:none;
+  width:100%;
+  margin:0;
+  padding:0 0 35px;
+  display:block;
+  border-bottom:2px solid #efefef;
+}
+form .likert:last-of-type {border-bottom:0;}
+form .likert:before {
+  content: '';
+  position:relative;
+  top:11px;
+  left:9.5%;
+  display:block;
+  background-color:#efefef;
+  height:4px;
+  width:78%;
+}
+form .likert li {
+  display:inline-block;
+  width:19%;
+  text-align:center;
+  vertical-align: top;
+}
+form .likert li input[type=radio] {
+  display:block;
+  position:relative;
+  top:0;
+  left:50%;
+  margin-left:-6px;
+
+}
+form .likert li label {width:100%;}
+form .buttons {
+  margin:30px 0;
+  padding:0 4.25%;
+  text-align:right
+}
+form .buttons button {
+  padding: 5px 10px;
+  background-color: #67ab49;
+  border: 0;
+  border-radius: 3px;
+}
+form .buttons .clear {background-color: #e9e9e9;}
+form .buttons .submit {background-color: #67ab49;}
+form .buttons .clear:hover {background-color: #ccc;}
+form .buttons .submit:hover {background-color: #14892c;}
+
+		</style>
+
+</head>
+
+<body>
+
+<!--<form action="/saveLikert" onsubmit="SaveLikert(this)"> -->
+
+
+
+
+<div class="wrap">
+    <h1 class="likert-header">Questionaire survey</h1>
+    <form method="post" action="@routes.BooksController.saveAnswers()">
+
+        <label class="statement">Which type of book do you like?.</label>
+        <ul class='likert'>
+            <li>
+                <input type="radio" name="likert" value="strong_agree">
+                <label>Strongly agree</label>
+            </li>
+            <li>
+                <input type="radio" name="likert" value="strong_agree">
+                <label>Agree</label>
+            </li>
+            <li>
+                <input type="radio" name="likert" value="strong_agree">
+                <label>Neutral</label>
+            </li>
+            <li>
+                <input type="radio" name="likert" value="disagree">
+                <label>Disagree</label>
+            </li>
+            <li>
+                <input type="radio" name="likert" value="strong_agree">
+                <label>Strongly disagree</label>
+            </li>
+        </ul>
+        <label class="statement">It's clear that this is a responsive design.</label>
+        <ul class='likert'>
+            <li>
+                <input type="radio" name="likert" value="strong_agree">
+                <label>Strongly agree</label>
+            </li>
+            <li>
+                <input type="radio" name="likert" value="strong_agree">
+                <label>Agree</label>
+            </li>
+            <li>
+                <input type="radio" name="likert" value="strong_agree">
+                <label>Neutral</label>
+            </li>
+            <li>
+                <input type="radio" name="likert" value="disagree">
+                <label>Disagree</label>
+            </li>
+            <li>
+                <input type="radio" name="likert" value="strong_agree">
+                <label>Strongly disagree</label>
+            </li>
+        </ul>
+        <label class="statement">Codepen.io is an excellent tool for prototyping.</label>
+        <ul class='likert'>
+            <li>
+                <input type="radio" name="likert" value="strong_agree">
+                <label>Strongly agree</label>
+            </li>
+            <li>
+                <input type="radio" name="likert" value="strong_agree">
+                <label>Agree</label>
+            </li>
+            <li>
+                <input type="radio" name="likert" value="strong_agree">
+                <label>Neutral</label>
+            </li>
+            <li>
+                <input type="radio" name="likert" value="disagree">
+                <label>Disagree</label>
+            </li>
+            <li>
+                <input type="radio" name="likert" value="strong_agree">
+                <label>Strongly disagree</label>
+            </li>
+        </ul>
+        <label class="statement">Pete Fecteau is incredibly smart and handsome.</label>
+        <ul class='likert'>
+            <li>
+                <input type="radio" name="likert" value="strong_agree">
+                <label>Strongly agree</label>
+            </li>
+            <li>
+                <input type="radio" name="likert" value="strong_agree">
+                <label>Agree</label>
+            </li>
+            <li>
+                <input type="radio" name="likert" value="strong_agree">
+                <label>Neutral</label>
+            </li>
+            <li>
+                <input type="radio" name="likert" value="disagree">
+                <label>Disagree</label>
+            </li>
+            <li>
+                <input type="radio" name="likert" value="strong_agree">
+                <label>Strongly disagree</label>
+            </li>
+        </ul>
+        <label class="statement"> I am familiar with AR</label>
+        <ul class='likert'>
+            <li> <input type="radio" name="familiar" value="1"> <label>Strongly Disagree</label> </li>
+            <li> <input type="radio" name="familiar" value="2"> <label>Disagree</label> </li>
+            <li> <input type="radio" name="familiar" value="3" checked> <label>Neutral</label> </li>
+            <li> <input type="radio" name="familiar" value="4"> <label>Agree</label> </li>
+            <li> <input type="radio" name="familiar" value="5"> <label>Strongly Agree</label> </li>
+        </ul>
+        <label class="statement">I am not afraid of AR</label>
+        <ul class='likert'>
+            <li> <input type="radio" name="fear" value="1"> <label>Strongly Disagree</label> </li>
+            <li> <input type="radio" name="fear" value="2"> <label>Disagree</label> </li>
+            <li> <input type="radio" name="fear" value="3" checked> <label>Neutral</label> </li>
+            <li> <input type="radio" name="fear" value="4"> <label>Agree</label> </li>
+            <li> <input type="radio" name="fear" value="5"> <label>Strongly Agree</label> </li>
+        </ul>
+
+        <label class="statement">AR is a useful technology</label>
+        <ul class='likert'>
+            <li> <input type="radio" name="useful" value="1"> <label>Strongly Disagree</label> </li>
+            <li> <input type="radio" name="useful" value="2"> <label>Disagree</label> </li>
+            <li> <input type="radio" name="useful" value="3" checked> <label>Neutral</label> </li>
+            <li> <input type="radio" name="useful" value="4"> <label>Agree</label> </li>
+            <li> <input type="radio" name="useful" value="5"> <label>Strongly Agree</label> </li>
+        </ul>
+
+        <label class="statement">I am anxious about using AR</label>
+        <ul class='likert'>
+            <li> <input type="radio" name="anxious" value="1"> <label>Strongly Disagree</label> </li>
+            <li> <input type="radio" name="anxious" value="2"> <label>Disagree</label> </li>
+            <li> <input type="radio" name="anxious" value="3" checked> <label>Neutral</label> </li>
+            <li> <input type="radio" name="anxious" value="4"> <label>Agree</label> </li>
+            <li> <input type="radio" name="anxious" value="5"> <label>Strongly Agree</label> </li>
+        </ul>
+
+        <div class="buttons">
+            <button class="clear">Clear</button>
+            <button class="submit">Submit</button>
+        </div>
+    </form>
+</div>
+
+
+
+
+
+</form>
+</body>
+
+</html>
+
